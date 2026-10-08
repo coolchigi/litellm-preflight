@@ -1,22 +1,22 @@
-# litellm-doctor
+# litellm-preflight
 
-[![CI](https://github.com/coolchigi/litellm-doctor/actions/workflows/ci.yml/badge.svg)](https://github.com/coolchigi/litellm-doctor/actions/workflows/ci.yml)
-[![PyPI](https://img.shields.io/pypi/v/litellm-doctor)](https://pypi.org/project/litellm-doctor/)
-[![Python](https://img.shields.io/pypi/pyversions/litellm-doctor)](https://pypi.org/project/litellm-doctor/)
+[![CI](https://github.com/coolchigi/litellm-preflight/actions/workflows/ci.yml/badge.svg)](https://github.com/coolchigi/litellm-preflight/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/litellm-preflight)](https://pypi.org/project/litellm-preflight/)
+[![Python](https://img.shields.io/pypi/pyversions/litellm-preflight)](https://pypi.org/project/litellm-preflight/)
 
 Reads your LiteLLM proxy config and flags settings that cost money or break once you run more than one process. It runs offline. It never connects to your proxy or sends anything anywhere.
 
-Every check matches how LiteLLM v1.104.0 actually behaves, and was reproduced against real LiteLLM containers in a local [harness](https://github.com/coolchigi/litellm-doctor/tree/main/harness) before it shipped. Today there's 1 check, `health-checks`.
+Every check matches how LiteLLM v1.104.0 actually behaves, and was reproduced against real LiteLLM containers in a local [harness](https://github.com/coolchigi/litellm-preflight/tree/main/harness) before it shipped. Today there's 1 check, `health-checks`.
 
-litellm-doctor is an independent project. It isn't affiliated with BerriAI or the LiteLLM project.
+litellm-preflight is an independent project. It isn't affiliated with BerriAI or the LiteLLM project.
 
 ## Install
 
 ```bash
-pip install litellm-doctor
+pip install litellm-preflight
 ```
 
-Or run it without installing, with `uvx litellm-doctor` or `pipx run litellm-doctor`. It needs Python 3.9 or newer, and its only dependency is PyYAML.
+Or run it without installing, with `uvx litellm-preflight` or `pipx run litellm-preflight`. It needs Python 3.9 or newer, and its only dependency is PyYAML.
 
 ## health-checks: what background health checks really cost
 
@@ -25,7 +25,7 @@ With `background_health_checks: true`, LiteLLM probes every deployment in your `
 For a config with 20 deployments and `background_health_checks: true`, on 3 replicas with 2 workers each:
 
 ```bash
-litellm-doctor health-checks config.yaml --replicas 3 --workers 2 --cost-per-probe 0.0003
+litellm-preflight health-checks config.yaml --replicas 3 --workers 2 --cost-per-probe 0.0003
 ```
 
 ```text
@@ -99,7 +99,7 @@ That's a floor for some deployments:
 
 ## How it was validated
 
-The [harness](https://github.com/coolchigi/litellm-doctor/tree/main/harness) runs LiteLLM v1.104.0 in Docker, both the classic image and the split images, against a mock model server that counts every call by container. With 3 deployments, a 20s interval and a 120s window it measured:
+The [harness](https://github.com/coolchigi/litellm-preflight/tree/main/harness) runs LiteLLM v1.104.0 in Docker, both the classic image and the split images, against a mock model server that counts every call by container. With 3 deployments, a 20s interval and a 120s window it measured:
 
 | Setup | Calls in 120s |
 |---|---|
@@ -109,7 +109,7 @@ The [harness](https://github.com/coolchigi/litellm-doctor/tree/main/harness) run
 | Shared, with Redis | a round of 3 every ~300s |
 | Shared, with the TTL set to 20s | 18 |
 
-The tests check the calculator against those numbers. [FINDINGS.md](https://github.com/coolchigi/litellm-doctor/blob/main/FINDINGS.md) has the full write-up, including the other LiteLLM behaviors the harness reproduced.
+The tests check the calculator against those numbers. [FINDINGS.md](https://github.com/coolchigi/litellm-preflight/blob/main/FINDINGS.md) has the full write-up, including the other LiteLLM behaviors the harness reproduced.
 
 ## Exit codes
 
@@ -119,9 +119,9 @@ The command line is the supported interface. Python imports may change before 1.
 
 ## Contributing
 
-Seen LiteLLM break or cost money at scale? Open an [issue](https://github.com/coolchigi/litellm-doctor/issues) with your LiteLLM version, how you deploy it and what happened. A check gets added once it reproduces in the harness.
+Seen LiteLLM break or cost money at scale? Open an [issue](https://github.com/coolchigi/litellm-preflight/issues) with your LiteLLM version, how you deploy it and what happened. A check gets added once it reproduces in the harness.
 
-To report a security problem in litellm-doctor, see [SECURITY.md](https://github.com/coolchigi/litellm-doctor/blob/main/SECURITY.md).
+To report a security problem in litellm-preflight, see [SECURITY.md](https://github.com/coolchigi/litellm-preflight/blob/main/SECURITY.md).
 
 ## License
 

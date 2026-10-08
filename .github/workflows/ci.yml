@@ -29,7 +29,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - name: Run tests
-        run: uv run --group dev pytest -q --cov=litellm_doctor --cov-branch --cov-report=term-missing
+        run: uv run --group dev pytest -q --cov=litellm_preflight --cov-branch --cov-report=term-missing
 
   package:
     name: Build and check the package
@@ -47,10 +47,10 @@ jobs:
         run: uvx twine check --strict dist/*
       - name: Install the wheel and run it
         run: |
-          uv run --isolated --no-project --with dist/*.whl litellm-doctor --version
-          uv run --isolated --no-project --with dist/*.whl litellm-doctor health-checks harness/config/health-checks.yaml --replicas 3
+          uv run --isolated --no-project --with dist/*.whl litellm-preflight --version
+          uv run --isolated --no-project --with dist/*.whl litellm-preflight health-checks harness/config/health-checks.yaml --replicas 3
       - name: Install the sdist and run it
-        run: uv run --isolated --no-project --with dist/*.tar.gz litellm-doctor --version
+        run: uv run --isolated --no-project --with dist/*.tar.gz litellm-preflight --version
 
   workflows:
     name: Audit workflows

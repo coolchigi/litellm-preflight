@@ -1,4 +1,4 @@
-"""litellm-doctor command line. Exit codes: 0 report printed, 2 bad input."""
+"""litellm-preflight command line. Exit codes: 0 report printed, 2 bad input."""
 
 from __future__ import annotations
 
@@ -7,10 +7,10 @@ import math
 import sys
 from typing import Callable, List, Optional
 
-from litellm_doctor import __version__
-from litellm_doctor.config import ConfigError, LoadedConfig, load
-from litellm_doctor.health_checks import DEFAULT_SHARED_TTL, analyze, describe
-from litellm_doctor.topology import Topology
+from litellm_preflight import __version__
+from litellm_preflight.config import ConfigError, LoadedConfig, load
+from litellm_preflight.health_checks import DEFAULT_SHARED_TTL, analyze, describe
+from litellm_preflight.topology import Topology
 
 
 def _whole_number(minimum: int) -> Callable[[str], int]:
@@ -94,10 +94,10 @@ def _health_checks(args: argparse.Namespace) -> List[str]:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="litellm-doctor",
+        prog="litellm-preflight",
         description="Checks a LiteLLM proxy deployment for settings that cost money or break at scale. "
                     "Reads your config file. It doesn't connect to the proxy.")
-    parser.add_argument("--version", action="version", version=f"litellm-doctor {__version__}")
+    parser.add_argument("--version", action="version", version=f"litellm-preflight {__version__}")
     sub = parser.add_subparsers(dest="command", metavar="CHECK", required=True)
 
     hc = sub.add_parser("health-checks", parents=[_topology_parser()],
@@ -124,7 +124,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     try:
         lines = args.run(args)
     except ConfigError as e:
-        print(f"litellm-doctor: {e}", file=sys.stderr)
+        print(f"litellm-preflight: {e}", file=sys.stderr)
         return 2
     print("\n".join(lines))
     return 0

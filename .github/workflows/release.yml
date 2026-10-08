@@ -1,7 +1,7 @@
 name: Release
 
 # Push a tag like v0.1.0 to publish that version to PyPI with Trusted Publishing.
-# PyPI side: a publisher for owner coolchigi, repo litellm-doctor, workflow release.yml, environment pypi.
+# PyPI side: a publisher for owner coolchigi, repo litellm-preflight, workflow release.yml, environment pypi.
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
         env:
           TAG: ${{ github.ref_name }}
         run: |
-          version=$(sed -n 's/^__version__ = "\(.*\)"$/\1/p' src/litellm_doctor/__init__.py)
+          version=$(sed -n 's/^__version__ = "\(.*\)"$/\1/p' src/litellm_preflight/__init__.py)
           if [ "v$version" != "$TAG" ]; then
             echo "Tag $TAG doesn't match __version__ $version"
             exit 1
@@ -56,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/project/litellm-doctor/
+      url: https://pypi.org/project/litellm-preflight/
     permissions:
       id-token: write # Trusted Publishing: lets PyPI verify this job's identity, no token stored anywhere
     steps:

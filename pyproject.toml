@@ -1,5 +1,5 @@
 [project]
-name = "litellm-doctor"
+name = "litellm-preflight"
 dynamic = ["version"]
 description = "Flags LiteLLM proxy settings that cost money or break at scale, like background health checks multiplied across every process"
 readme = "README.md"
@@ -28,13 +28,13 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/coolchigi/litellm-doctor"
-Source = "https://github.com/coolchigi/litellm-doctor"
-Issues = "https://github.com/coolchigi/litellm-doctor/issues"
-Changelog = "https://github.com/coolchigi/litellm-doctor/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/coolchigi/litellm-preflight"
+Source = "https://github.com/coolchigi/litellm-preflight"
+Issues = "https://github.com/coolchigi/litellm-preflight/issues"
+Changelog = "https://github.com/coolchigi/litellm-preflight/blob/main/CHANGELOG.md"
 
 [project.scripts]
-litellm-doctor = "litellm_doctor.cli:main"
+litellm-preflight = "litellm_preflight.cli:main"
 
 [dependency-groups]
 dev = ["pytest>=7", "pytest-cov>=4"]
@@ -44,11 +44,11 @@ requires = ["hatchling>=1.27"]
 build-backend = "hatchling.build"
 
 [tool.hatch.version]
-path = "src/litellm_doctor/__init__.py"
+path = "src/litellm_preflight/__init__.py"
 
 # Metadata 2.4 is what every upload tool and installer in use today accepts. Nothing here needs 2.5.
 [tool.hatch.build.targets.wheel]
-packages = ["src/litellm_doctor"]
+packages = ["src/litellm_preflight"]
 core-metadata-version = "2.4"
 
 [tool.hatch.build.targets.sdist]

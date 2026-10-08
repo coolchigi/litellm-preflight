@@ -4,7 +4,7 @@ import textwrap
 
 import pytest
 
-from litellm_doctor.config import ConfigError, load
+from litellm_preflight.config import ConfigError, load
 
 
 def write(path, text):

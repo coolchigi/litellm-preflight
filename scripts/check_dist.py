@@ -13,13 +13,13 @@ ROOT = Path(__file__).resolve().parent.parent
 DIST = ROOT / "dist"
 FORBIDDEN = ("harness", "findings", ".private", "results", ".env", "advisory")
 SDIST_FILES = re.compile(
-    r"^(src/litellm_doctor/[a-z_]+\.py|tests/[a-z_]+\.py|README\.md|LICENSE|CHANGELOG\.md|pyproject\.toml|"
+    r"^(src/litellm_preflight/[a-z_]+\.py|tests/[a-z_]+\.py|README\.md|LICENSE|CHANGELOG\.md|pyproject\.toml|"
     r"PKG-INFO|\.gitignore)$")
-WHEEL_FILES = re.compile(r"^(litellm_doctor/[a-z_]+\.py|litellm_doctor-[^/]+\.dist-info/.+)$")
+WHEEL_FILES = re.compile(r"^(litellm_preflight/[a-z_]+\.py|litellm_preflight-[^/]+\.dist-info/.+)$")
 
 
 def version() -> str:
-    text = (ROOT / "src" / "litellm_doctor" / "__init__.py").read_text(encoding="utf-8")
+    text = (ROOT / "src" / "litellm_preflight" / "__init__.py").read_text(encoding="utf-8")
     return re.search(r'__version__ = "([^"]+)"', text).group(1)
 
 
@@ -27,16 +27,16 @@ def main() -> int:
     errors = []
     v = version()
     sdists, wheels = sorted(DIST.glob("*.tar.gz")), sorted(DIST.glob("*.whl"))
-    if [p.name for p in sdists] != [f"litellm_doctor-{v}.tar.gz"]:
-        errors.append(f"expected exactly dist/litellm_doctor-{v}.tar.gz, found {[p.name for p in sdists]}")
-    if [p.name for p in wheels] != [f"litellm_doctor-{v}-py3-none-any.whl"]:
-        errors.append(f"expected exactly dist/litellm_doctor-{v}-py3-none-any.whl, found {[p.name for p in wheels]}")
+    if [p.name for p in sdists] != [f"litellm_preflight-{v}.tar.gz"]:
+        errors.append(f"expected exactly dist/litellm_preflight-{v}.tar.gz, found {[p.name for p in sdists]}")
+    if [p.name for p in wheels] != [f"litellm_preflight-{v}-py3-none-any.whl"]:
+        errors.append(f"expected exactly dist/litellm_preflight-{v}-py3-none-any.whl, found {[p.name for p in wheels]}")
     if errors:
         print("\n".join(errors))
         return 1
 
     with tarfile.open(sdists[0]) as tar:
-        prefix = f"litellm_doctor-{v}/"
+        prefix = f"litellm_preflight-{v}/"
         names = [m.name[len(prefix):] for m in tar.getmembers() if m.isfile()]
         for name in names:
             if not SDIST_FILES.match(name):
@@ -45,7 +45,7 @@ def main() -> int:
         pkg_info = tar.extractfile(prefix + "PKG-INFO").read().decode()
     with zipfile.ZipFile(wheels[0]) as whl:
         wheel_names = whl.namelist()
-        metadata = whl.read(f"litellm_doctor-{v}.dist-info/METADATA").decode()
+        metadata = whl.read(f"litellm_preflight-{v}.dist-info/METADATA").decode()
     for name in wheel_names:
         if not WHEEL_FILES.match(name):
             errors.append(f"wheel has an unexpected file: {name}")

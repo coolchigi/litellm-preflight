@@ -169,7 +169,7 @@ def _from_configmap(raw: Mapping[str, Any], path: str) -> "tuple[Dict[str, Any],
         raise ConfigError(f"data.{keys[0]} in {path} should be a YAML mapping")
     if INCLUDE_KEY in inner:
         raise ConfigError(f"data.{keys[0]} in {path} uses include:, which needs the included files. "
-                          "Run litellm-doctor on the files the proxy mounts instead.")
+                          "Run litellm-preflight on the files the proxy mounts instead.")
     return dict(inner), keys[0]
 
 

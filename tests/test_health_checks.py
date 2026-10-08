@@ -3,9 +3,9 @@ health_check_interval 20, health calls counted at a mock model server over 120s.
 
 import pytest
 
-from litellm_doctor.config import ConfigError
-from litellm_doctor.health_checks import analyze, count_deployments, describe, interval_problem, redis_source
-from litellm_doctor.topology import Topology
+from litellm_preflight.config import ConfigError
+from litellm_preflight.health_checks import analyze, count_deployments, describe, interval_problem, redis_source
+from litellm_preflight.topology import Topology
 
 
 def config(models=3, **general):

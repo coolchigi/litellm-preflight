@@ -23,8 +23,8 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import Any, Dict, List, Mapping, Optional, Tuple
 
-from litellm_doctor.config import ConfigError, mapping
-from litellm_doctor.topology import Topology
+from litellm_preflight.config import ConfigError, mapping
+from litellm_preflight.topology import Topology
 
 DEFAULT_INTERVAL = 300  # DEFAULT_HEALTH_CHECK_INTERVAL in litellm/constants.py
 DEFAULT_SHARED_TTL = 300  # DEFAULT_SHARED_HEALTH_CHECK_TTL in litellm/constants.py

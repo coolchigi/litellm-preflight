@@ -307,7 +307,7 @@ wheels = [
 ]
 
 [[package]]
-name = "litellm-doctor"
+name = "litellm-preflight"
 source = { editable = "." }
 dependencies = [
     { name = "pyyaml" },

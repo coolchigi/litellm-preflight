@@ -8,8 +8,8 @@ from pathlib import Path
 
 import pytest
 
-from litellm_doctor import __version__
-from litellm_doctor.cli import main
+from litellm_preflight import __version__
+from litellm_preflight.cli import main
 
 ROOT = Path(__file__).resolve().parent.parent
 README = ROOT / "README.md"
@@ -33,7 +33,7 @@ def run(args, capsys):
 
 def test_readme_example_matches_real_output(tmp_path, capsys, monkeypatch):
     text = README.read_text(encoding="utf-8")
-    command = re.search(r"```bash\n(litellm-doctor health-checks config\.yaml[^\n]*)\n```", text).group(1)
+    command = re.search(r"```bash\n(litellm-preflight health-checks config\.yaml[^\n]*)\n```", text).group(1)
     shown = re.search(r"```text\n(Config: config\.yaml\n.*?)```", text, re.S).group(1)
     monkeypatch.chdir(tmp_path)
     write_config(tmp_path / "config.yaml", models=20)
@@ -79,7 +79,7 @@ def test_bad_config_exits_2_with_message(tmp_path, capsys):
     bad.write_text("- not\n- a mapping\n", encoding="utf-8")
     code, out, err = run(["health-checks", str(bad)], capsys)
     assert code == 2 and out == ""
-    assert err.startswith("litellm-doctor: ") and "should be a YAML mapping" in err
+    assert err.startswith("litellm-preflight: ") and "should be a YAML mapping" in err
 
 
 def test_missing_file_exits_2(capsys):
@@ -108,7 +108,7 @@ def test_version(capsys):
     with pytest.raises(SystemExit) as exc:
         main(["--version"])
     assert exc.value.code == 0
-    assert capsys.readouterr().out.strip() == f"litellm-doctor {__version__}"
+    assert capsys.readouterr().out.strip() == f"litellm-preflight {__version__}"
 
 
 def test_no_check_exits_2():
@@ -119,7 +119,7 @@ def test_no_check_exits_2():
 
 def test_python_dash_m(tmp_path):
     env = {**os.environ, "PYTHONPATH": str(ROOT / "src")}
-    result = subprocess.run([sys.executable, "-m", "litellm_doctor", "health-checks",
+    result = subprocess.run([sys.executable, "-m", "litellm_preflight", "health-checks",
                              write_config(tmp_path / "c.yaml", models=1)], capture_output=True, text=True, env=env)
     assert result.returncode == 0
     assert "Probes per day: up to 288" in result.stdout

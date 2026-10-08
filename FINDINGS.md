@@ -24,7 +24,7 @@ The split backend made 18 calls on its own in both rows. `backend/main.py` reuse
 
 `use_shared_health_check: true` stops the multiplying: 1 pod takes a Redis lock and probes for everyone. But results are reused for `DEFAULT_SHARED_HEALTH_CHECK_TTL` (300s in `litellm/constants.py`) before anyone probes again. With a 20s interval, the mock saw a round of probes at 0s, 300s and 600s, and nothing in between. Setting the TTL to 20 gave 18 calls in 120s, exactly 1x.
 
-**Doctor rule:** probes per day = processes × models × 86,400 / interval, where processes counts every replica, every worker, and the backend on split. In shared mode, flag an interval below the TTL, because the TTL wins.
+**Check for litellm-preflight:** probes per day = processes × models × 86,400 / interval, where processes counts every replica, every worker, and the backend on split. In shared mode, flag an interval below the TTL, because the TTL wins.
 
 ## Multiproc files pile up with worker recycling
 
@@ -45,7 +45,7 @@ The body grows because gauges in `all` mode carry a `pid` label, so a dead worke
 
 Memory didn't grow here. 55 restarts with 1 key and 1 model write small files. The production OOMs had far more restarts and far more label combinations, and this harness hasn't run a soak long enough to show the memory side. 13 (classic) and 25 (split) of the 3,000 requests failed during recycling, and I haven't looked into why.
 
-**Doctor rule:** flag a multiproc dir (set, or created by workers > 1 with the prometheus callback) combined with worker recycling.
+**Check for litellm-preflight:** flag a multiproc dir (set, or created by workers > 1 with the prometheus callback) combined with worker recycling.
 
 ## A key is blocked while /key/info shows it under budget
 
@@ -53,7 +53,7 @@ Memory didn't grow here. 55 restarts with 1 key and 1 model write small files. T
 
 Enforcement reads the Redis counter first (`_virtual_key_max_budget_check` in `litellm/proxy/auth/auth_checks.py`, which calls `get_current_spend`). `/key/info` reads Postgres, which gets spend from the batch writer every `proxy_batch_write_at` seconds (10 by default). `/key/info` caught up after 25s on classic and 13s on split.
 
-**Doctor rule:** explain the gap, and match budget alerts on 422 as well as 400.
+**Check for litellm-preflight:** explain the gap, and match budget alerts on 422 as well as 400.
 
 ## proxy_batch_write_at: 60 lets a key overspend
 
@@ -65,7 +65,7 @@ Why, from the code: the Redis spend counter had a 60s TTL in these runs (`redis-
 
 This is public as [BerriAI/litellm#43732](https://github.com/BerriAI/litellm/issues/43732), opened 29 Sep 2026 and reproduced by 2 others.
 
-**Doctor rule:** flag `proxy_batch_write_at` of 60 or more, since the counter can expire before spend reaches Postgres.
+**Check for litellm-preflight:** flag `proxy_batch_write_at` of 60 or more, since the counter can expire before spend reaches Postgres.
 
 ## Budget windows are clock slots
 
@@ -85,7 +85,7 @@ This is public as [BerriAI/litellm#43732](https://github.com/BerriAI/litellm/iss
 
 A key that hits its budget stays blocked past `budget_reset_at` until the reset job runs, every 597 to 605s (`PROXY_BUDGET_RESCHEDULER_MIN_TIME` and `MAX_TIME`). Measured: blocked 616s past reset on classic and 525s on split. `/key/info` reset in the same 5s probe both times, which points at the job. 616s is a bit over one interval, and I haven't pinned down why.
 
-**Doctor rule:** show each key's next reset and the worst-case lag of one job interval. Warn on `7d` and `30d`.
+**Check for litellm-preflight:** show each key's next reset and the worst-case lag of one job interval. Warn on `7d` and `30d`.
 
 ## Deleted keys coming back with enable_redis_auth_cache
 
@@ -101,7 +101,7 @@ On v1.89.3 the key object left Redis on delete and then reappeared, so a worker 
 
 What still happens on v1.104.0, with or without the Redis auth cache: pods that didn't serve the delete keep accepting the key until their in-memory copy expires (60s, `user_api_key_cache_ttl`). On classic that was 1 of 2 replicas. On split it was every gateway, because deletes go to the backend. The production docs mention the 60s window. The split part is the one worth a rule.
 
-**Doctor rule:** on split, a revoked key works on every gateway for up to `user_api_key_cache_ttl`.
+**Check for litellm-preflight:** on split, a revoked key works on every gateway for up to `user_api_key_cache_ttl`.
 
 ## Not covered
 
