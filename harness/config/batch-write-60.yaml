@@ -1,0 +1,42 @@
+# Scenario: spend written to Postgres every 60s instead of the default 10s.
+#
+# 3 models, all pointing at the mock, so anything that runs per model
+# (like background health checks) shows up as a multiple.
+# Pricing is set so each mock call costs a known amount:
+#   1000 prompt tokens x $1/M + 500 completion tokens x $2/M = $0.002 per call
+
+model_list:
+  - model_name: mock-a
+    litellm_params:
+      model: openai/mock-a
+      api_base: http://mock:8080/v1
+      api_key: mock-key
+      input_cost_per_token: 0.000001
+      output_cost_per_token: 0.000002
+  - model_name: mock-b
+    litellm_params:
+      model: openai/mock-b
+      api_base: http://mock:8080/v1
+      api_key: mock-key
+      input_cost_per_token: 0.000001
+      output_cost_per_token: 0.000002
+  - model_name: mock-c
+    litellm_params:
+      model: openai/mock-c
+      api_base: http://mock:8080/v1
+      api_key: mock-key
+      input_cost_per_token: 0.000001
+      output_cost_per_token: 0.000002
+
+general_settings:
+  proxy_batch_write_at: 60   # 10 by default
+  master_key: os.environ/LITELLM_MASTER_KEY
+  database_url: os.environ/DATABASE_URL
+  # Explicit block so the proxy fails at startup if Redis is unreachable,
+  # instead of quietly falling back to per-pod in-memory state.
+  coordination_redis:
+    host: redis
+    port: 6379
+
+litellm_settings:
+  callbacks: ["prometheus"]

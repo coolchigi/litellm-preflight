@@ -1,0 +1,53 @@
+{
+  "finding": "health-checks",
+  "variant": "shared",
+  "settings": {
+    "stack": "split",
+    "replicas": 3,
+    "workers": 1,
+    "config": "health-checks-shared.yaml",
+    "files": [],
+    "env": {}
+  },
+  "counted_from_stack_start": true,
+  "bursts": [
+    {
+      "at": 0.0,
+      "calls": 3,
+      "callers": [
+        "litellm-split-backend-1"
+      ]
+    },
+    {
+      "at": 300.2,
+      "calls": 3,
+      "callers": [
+        "litellm-split-backend-1"
+      ]
+    },
+    {
+      "at": 600.4,
+      "calls": 3,
+      "callers": [
+        "litellm-split-backend-1"
+      ]
+    }
+  ],
+  "window_seconds": 660,
+  "health_check_interval": 20,
+  "models": 3,
+  "health_calls_total": 9,
+  "user_calls_total": 0,
+  "health_calls_by_caller": {
+    "litellm-split-backend-1": 9
+  },
+  "expected_if_one_loop_cluster_wide": 99.0,
+  "expected_if_one_loop_per_serving_process": 297.0,
+  "multiplier_vs_one_loop": 0.09,
+  "first_last_call_by_caller": {
+    "litellm-split-backend-1": [
+      1791267831.179,
+      1791268431.534
+    ]
+  }
+}

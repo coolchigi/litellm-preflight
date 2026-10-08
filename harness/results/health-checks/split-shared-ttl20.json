@@ -1,0 +1,76 @@
+{
+  "finding": "health-checks",
+  "variant": "shared-ttl20",
+  "settings": {
+    "stack": "split",
+    "replicas": 3,
+    "workers": 1,
+    "config": "health-checks-shared.yaml",
+    "files": [
+      "scenarios/health-checks/split-ttl20.yaml"
+    ],
+    "env": {}
+  },
+  "counted_from_stack_start": false,
+  "bursts": [
+    {
+      "at": 0.0,
+      "calls": 3,
+      "callers": [
+        "litellm-split-gateway-3"
+      ]
+    },
+    {
+      "at": 20.0,
+      "calls": 3,
+      "callers": [
+        "litellm-split-gateway-3"
+      ]
+    },
+    {
+      "at": 40.1,
+      "calls": 3,
+      "callers": [
+        "litellm-split-gateway-3"
+      ]
+    },
+    {
+      "at": 60.1,
+      "calls": 3,
+      "callers": [
+        "litellm-split-gateway-3"
+      ]
+    },
+    {
+      "at": 80.2,
+      "calls": 3,
+      "callers": [
+        "litellm-split-gateway-3"
+      ]
+    },
+    {
+      "at": 100.2,
+      "calls": 3,
+      "callers": [
+        "litellm-split-gateway-3"
+      ]
+    }
+  ],
+  "window_seconds": 120,
+  "health_check_interval": 20,
+  "models": 3,
+  "health_calls_total": 18,
+  "user_calls_total": 0,
+  "health_calls_by_caller": {
+    "litellm-split-gateway-3": 18
+  },
+  "expected_if_one_loop_cluster_wide": 18.0,
+  "expected_if_one_loop_per_serving_process": 54.0,
+  "multiplier_vs_one_loop": 1.0,
+  "first_last_call_by_caller": {
+    "litellm-split-gateway-3": [
+      1791268565.023,
+      1791268665.247
+    ]
+  }
+}

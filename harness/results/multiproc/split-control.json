@@ -1,0 +1,387 @@
+{
+  "finding": "multiproc",
+  "variant": "control",
+  "settings": {
+    "stack": "split",
+    "replicas": 1,
+    "workers": 2,
+    "config": "proxy.yaml",
+    "files": [
+      "scenarios/multiproc/split-control.yaml"
+    ],
+    "env": {}
+  },
+  "multiproc_dir": "/tmp/litellm_prometheus_multiproc",
+  "summary": {
+    "requests": 3000,
+    "errors": 0,
+    "files": [
+      3,
+      8
+    ],
+    "kib": [
+      192,
+      512
+    ],
+    "worker_pids_seen": 2,
+    "metrics_ms": [
+      3.4,
+      5.0
+    ],
+    "memory_mib": [
+      1365.0,
+      1456.1
+    ]
+  },
+  "rounds": [
+    {
+      "round": 0,
+      "requests_sent": 0,
+      "errors": 0,
+      "dir": {
+        "exists": true,
+        "files": 3,
+        "bytes": 196608,
+        "pids": 2,
+        "by_kind": {
+          "gauge_all": 2,
+          "gauge_livesum": 1
+        }
+      },
+      "metrics": {
+        "status": [
+          200,
+          200,
+          200
+        ],
+        "bytes": 1513,
+        "median_ms": 3.4
+      },
+      "memory_mib": 1365.0
+    },
+    {
+      "round": 1,
+      "requests_sent": 250,
+      "errors": 0,
+      "dir": {
+        "exists": true,
+        "files": 8,
+        "bytes": 524288,
+        "pids": 2,
+        "by_kind": {
+          "counter": 2,
+          "histogram": 2,
+          "gauge_livesum": 2,
+          "gauge_all": 2
+        }
+      },
+      "metrics": {
+        "status": [
+          200,
+          200,
+          200
+        ],
+        "bytes": 50169,
+        "median_ms": 6.0
+      },
+      "memory_mib": 1397.8
+    },
+    {
+      "round": 2,
+      "requests_sent": 500,
+      "errors": 0,
+      "dir": {
+        "exists": true,
+        "files": 8,
+        "bytes": 524288,
+        "pids": 2,
+        "by_kind": {
+          "counter": 2,
+          "histogram": 2,
+          "gauge_livesum": 2,
+          "gauge_all": 2
+        }
+      },
+      "metrics": {
+        "status": [
+          200,
+          200,
+          200
+        ],
+        "bytes": 50161,
+        "median_ms": 7.1
+      },
+      "memory_mib": 1415.2
+    },
+    {
+      "round": 3,
+      "requests_sent": 750,
+      "errors": 0,
+      "dir": {
+        "exists": true,
+        "files": 8,
+        "bytes": 524288,
+        "pids": 2,
+        "by_kind": {
+          "counter": 2,
+          "histogram": 2,
+          "gauge_livesum": 2,
+          "gauge_all": 2
+        }
+      },
+      "metrics": {
+        "status": [
+          200,
+          200,
+          200
+        ],
+        "bytes": 50153,
+        "median_ms": 13.9
+      },
+      "memory_mib": 1425.4
+    },
+    {
+      "round": 4,
+      "requests_sent": 1000,
+      "errors": 0,
+      "dir": {
+        "exists": true,
+        "files": 8,
+        "bytes": 524288,
+        "pids": 2,
+        "by_kind": {
+          "counter": 2,
+          "histogram": 2,
+          "gauge_livesum": 2,
+          "gauge_all": 2
+        }
+      },
+      "metrics": {
+        "status": [
+          200,
+          200,
+          200
+        ],
+        "bytes": 50244,
+        "median_ms": 12.8
+      },
+      "memory_mib": 1434.6
+    },
+    {
+      "round": 5,
+      "requests_sent": 1250,
+      "errors": 0,
+      "dir": {
+        "exists": true,
+        "files": 8,
+        "bytes": 524288,
+        "pids": 2,
+        "by_kind": {
+          "counter": 2,
+          "histogram": 2,
+          "gauge_livesum": 2,
+          "gauge_all": 2
+        }
+      },
+      "metrics": {
+        "status": [
+          200,
+          200,
+          200
+        ],
+        "bytes": 50278,
+        "median_ms": 11.2
+      },
+      "memory_mib": 1445.9
+    },
+    {
+      "round": 6,
+      "requests_sent": 1500,
+      "errors": 0,
+      "dir": {
+        "exists": true,
+        "files": 8,
+        "bytes": 524288,
+        "pids": 2,
+        "by_kind": {
+          "counter": 2,
+          "histogram": 2,
+          "gauge_livesum": 2,
+          "gauge_all": 2
+        }
+      },
+      "metrics": {
+        "status": [
+          200,
+          200,
+          200
+        ],
+        "bytes": 50266,
+        "median_ms": 5.9
+      },
+      "memory_mib": 1449.0
+    },
+    {
+      "round": 7,
+      "requests_sent": 1750,
+      "errors": 0,
+      "dir": {
+        "exists": true,
+        "files": 8,
+        "bytes": 524288,
+        "pids": 2,
+        "by_kind": {
+          "counter": 2,
+          "histogram": 2,
+          "gauge_livesum": 2,
+          "gauge_all": 2
+        }
+      },
+      "metrics": {
+        "status": [
+          200,
+          200,
+          200
+        ],
+        "bytes": 50276,
+        "median_ms": 14.3
+      },
+      "memory_mib": 1447.9
+    },
+    {
+      "round": 8,
+      "requests_sent": 2000,
+      "errors": 0,
+      "dir": {
+        "exists": true,
+        "files": 8,
+        "bytes": 524288,
+        "pids": 2,
+        "by_kind": {
+          "counter": 2,
+          "histogram": 2,
+          "gauge_livesum": 2,
+          "gauge_all": 2
+        }
+      },
+      "metrics": {
+        "status": [
+          200,
+          200,
+          200
+        ],
+        "bytes": 50254,
+        "median_ms": 6.1
+      },
+      "memory_mib": 1447.9
+    },
+    {
+      "round": 9,
+      "requests_sent": 2250,
+      "errors": 0,
+      "dir": {
+        "exists": true,
+        "files": 8,
+        "bytes": 524288,
+        "pids": 2,
+        "by_kind": {
+          "counter": 2,
+          "histogram": 2,
+          "gauge_livesum": 2,
+          "gauge_all": 2
+        }
+      },
+      "metrics": {
+        "status": [
+          200,
+          200,
+          200
+        ],
+        "bytes": 50271,
+        "median_ms": 8.4
+      },
+      "memory_mib": 1452.0
+    },
+    {
+      "round": 10,
+      "requests_sent": 2500,
+      "errors": 0,
+      "dir": {
+        "exists": true,
+        "files": 8,
+        "bytes": 524288,
+        "pids": 2,
+        "by_kind": {
+          "counter": 2,
+          "histogram": 2,
+          "gauge_livesum": 2,
+          "gauge_all": 2
+        }
+      },
+      "metrics": {
+        "status": [
+          200,
+          200,
+          200
+        ],
+        "bytes": 50277,
+        "median_ms": 5.1
+      },
+      "memory_mib": 1455.1
+    },
+    {
+      "round": 11,
+      "requests_sent": 2750,
+      "errors": 0,
+      "dir": {
+        "exists": true,
+        "files": 8,
+        "bytes": 524288,
+        "pids": 2,
+        "by_kind": {
+          "counter": 2,
+          "histogram": 2,
+          "gauge_livesum": 2,
+          "gauge_all": 2
+        }
+      },
+      "metrics": {
+        "status": [
+          200,
+          200,
+          200
+        ],
+        "bytes": 50272,
+        "median_ms": 12.9
+      },
+      "memory_mib": 1456.1
+    },
+    {
+      "round": 12,
+      "requests_sent": 3000,
+      "errors": 0,
+      "dir": {
+        "exists": true,
+        "files": 8,
+        "bytes": 524288,
+        "pids": 2,
+        "by_kind": {
+          "counter": 2,
+          "histogram": 2,
+          "gauge_livesum": 2,
+          "gauge_all": 2
+        }
+      },
+      "metrics": {
+        "status": [
+          200,
+          200,
+          200
+        ],
+        "bytes": 50274,
+        "median_ms": 5.0
+      },
+      "memory_mib": 1456.1
+    }
+  ]
+}

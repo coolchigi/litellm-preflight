@@ -1,0 +1,8 @@
+[02:23:30] split: up {'stack': 'split', 'replicas': 3, 'workers': 1, 'config': 'health-checks-shared.yaml', 'files': [], 'env': {}}
+[02:23:56] split/shared: counting health checks for 660s
+[02:35:03] split/shared: 9 health calls, 0.09x one loop, by caller {'litellm-split-backend-1': 9}
+[02:35:03] saved results/health-checks/split-shared.json
+[02:35:03] split: up {'stack': 'split', 'replicas': 3, 'workers': 1, 'config': 'health-checks-shared.yaml', 'files': ['scenarios/health-checks/split-ttl20.yaml'], 'env': {}}
+[02:35:49] split/shared-ttl20: counting health checks for 120s
+[02:37:56] split/shared-ttl20: 18 health calls, 1.0x one loop, by caller {'litellm-split-gateway-3': 18}
+[02:37:56] saved results/health-checks/split-shared-ttl20.json

@@ -1,0 +1,13 @@
+# Harness secrets, generated on first run
+harness/.env
+
+# Python and build output
+__pycache__/
+*.py[cod]
+.venv/
+dist/
+build/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/

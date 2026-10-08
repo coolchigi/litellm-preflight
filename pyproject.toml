@@ -1,0 +1,60 @@
+[project]
+name = "litellm-doctor"
+dynamic = ["version"]
+description = "Flags LiteLLM proxy settings that cost money or break at scale, like background health checks multiplied across every process"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Chigozirim Eke" }]
+requires-python = ">=3.9"
+dependencies = ["pyyaml>=6"]
+keywords = ["litellm", "llm", "llm-gateway", "proxy", "health-check", "kubernetes", "sre", "cost"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: System :: Monitoring",
+    "Topic :: System :: Systems Administration",
+]
+
+[project.urls]
+Homepage = "https://github.com/coolchigi/litellm-doctor"
+Source = "https://github.com/coolchigi/litellm-doctor"
+Issues = "https://github.com/coolchigi/litellm-doctor/issues"
+Changelog = "https://github.com/coolchigi/litellm-doctor/blob/main/CHANGELOG.md"
+
+[project.scripts]
+litellm-doctor = "litellm_doctor.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=7", "pytest-cov>=4"]
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "src/litellm_doctor/__init__.py"
+
+# Metadata 2.4 is what every upload tool and installer in use today accepts. Nothing here needs 2.5.
+[tool.hatch.build.targets.wheel]
+packages = ["src/litellm_doctor"]
+core-metadata-version = "2.4"
+
+[tool.hatch.build.targets.sdist]
+only-include = ["src", "tests", "README.md", "LICENSE", "CHANGELOG.md", "pyproject.toml"]
+core-metadata-version = "2.4"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

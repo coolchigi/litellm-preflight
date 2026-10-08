@@ -1,0 +1,45 @@
+# Shared by both stacks: Postgres, Redis and the mock model server.
+# Run through ./harness, which sets the project name and host ports per stack.
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: litellm
+      POSTGRES_PASSWORD: litellm
+      POSTGRES_DB: litellm
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U litellm"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+
+  mock:
+    image: python:3.13-slim
+    command: ["python", "-u", "/mock/server.py"]
+    environment:
+      MOCK_PROMPT_TOKENS: ${MOCK_PROMPT_TOKENS:-1000}
+      MOCK_COMPLETION_TOKENS: ${MOCK_COMPLETION_TOKENS:-500}
+      MOCK_LATENCY_MS: ${MOCK_LATENCY_MS:-0}
+    volumes:
+      - ./mock:/mock:ro
+    ports:
+      - "127.0.0.1:${MOCK_HOST_PORT}:8080"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/health', timeout=2)"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  postgres_data:

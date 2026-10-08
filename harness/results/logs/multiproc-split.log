@@ -1,0 +1,32 @@
+[02:39:06] split: up {'stack': 'split', 'replicas': 1, 'workers': 2, 'config': 'proxy.yaml', 'files': ['scenarios/multiproc/split-control.yaml'], 'env': {}}
+[02:39:34] split/control: multiproc dir at start {'exists': True, 'files': 3, 'bytes': 196608, 'pids': 2, 'by_kind': {'gauge_all': 2, 'gauge_livesum': 1}}
+[02:39:43] split/control: round 1: 8 files, 512 KiB, 2 pids, /metrics 6.0 ms, mem 1397.8 MiB, errors 0
+[02:39:51] split/control: round 2: 8 files, 512 KiB, 2 pids, /metrics 7.1 ms, mem 1415.2 MiB, errors 0
+[02:39:58] split/control: round 3: 8 files, 512 KiB, 2 pids, /metrics 13.9 ms, mem 1425.4 MiB, errors 0
+[02:40:06] split/control: round 4: 8 files, 512 KiB, 2 pids, /metrics 12.8 ms, mem 1434.6 MiB, errors 0
+[02:40:14] split/control: round 5: 8 files, 512 KiB, 2 pids, /metrics 11.2 ms, mem 1445.9 MiB, errors 0
+[02:40:21] split/control: round 6: 8 files, 512 KiB, 2 pids, /metrics 5.9 ms, mem 1449.0 MiB, errors 0
+[02:40:29] split/control: round 7: 8 files, 512 KiB, 2 pids, /metrics 14.3 ms, mem 1447.9 MiB, errors 0
+[02:40:37] split/control: round 8: 8 files, 512 KiB, 2 pids, /metrics 6.1 ms, mem 1447.9 MiB, errors 0
+[02:40:45] split/control: round 9: 8 files, 512 KiB, 2 pids, /metrics 8.4 ms, mem 1452.0 MiB, errors 0
+[02:40:53] split/control: round 10: 8 files, 512 KiB, 2 pids, /metrics 5.1 ms, mem 1455.1 MiB, errors 0
+[02:41:01] split/control: round 11: 8 files, 512 KiB, 2 pids, /metrics 12.9 ms, mem 1456.1 MiB, errors 0
+[02:41:08] split/control: round 12: 8 files, 512 KiB, 2 pids, /metrics 5.0 ms, mem 1456.1 MiB, errors 0
+[02:41:14] split/control: {'requests': 3000, 'errors': 0, 'files': [3, 8], 'kib': [192, 512], 'worker_pids_seen': 2, 'metrics_ms': [3.4, 5.0], 'memory_mib': [1365.0, 1456.1]}
+[02:41:14] saved results/multiproc/split-control.json
+[02:41:14] split: up {'stack': 'split', 'replicas': 1, 'workers': 2, 'config': 'proxy.yaml', 'files': ['scenarios/multiproc/split-recycle.yaml'], 'env': {}}
+[02:41:41] split/recycle: multiproc dir at start {'exists': True, 'files': 3, 'bytes': 196608, 'pids': 2, 'by_kind': {'gauge_all': 2, 'gauge_livesum': 1}}
+[02:42:18] split/recycle: round 1: 18 files, 1152 KiB, 6 pids, /metrics 9.1 ms, mem 1477.6 MiB, errors 0
+[02:42:52] split/recycle: round 2: 29 files, 1856 KiB, 10 pids, /metrics 8.9 ms, mem 856.7 MiB, errors 2
+[02:43:24] split/recycle: round 3: 43 files, 2752 KiB, 14 pids, /metrics 10.3 ms, mem 1024.0 MiB, errors 4
+[02:44:04] split/recycle: round 4: 54 files, 3456 KiB, 18 pids, /metrics 22.7 ms, mem 1038.3 MiB, errors 7
+[02:44:40] split/recycle: round 5: 70 files, 4480 KiB, 23 pids, /metrics 11.6 ms, mem 1384.4 MiB, errors 8
+[02:45:16] split/recycle: round 6: 82 files, 5248 KiB, 28 pids, /metrics 14.1 ms, mem 844.9 MiB, errors 10
+[02:45:52] split/recycle: round 7: 97 files, 6208 KiB, 32 pids, /metrics 18.3 ms, mem 1046.5 MiB, errors 11
+[02:46:35] split/recycle: round 8: 112 files, 7168 KiB, 37 pids, /metrics 28.6 ms, mem 1384.4 MiB, errors 18
+[02:47:09] split/recycle: round 9: 124 files, 7936 KiB, 41 pids, /metrics 23.7 ms, mem 1425.4 MiB, errors 20
+[02:47:44] split/recycle: round 10: 137 files, 8768 KiB, 46 pids, /metrics 35.5 ms, mem 867.2 MiB, errors 24
+[02:48:16] split/recycle: round 11: 151 files, 9664 KiB, 50 pids, /metrics 20.4 ms, mem 870.6 MiB, errors 24
+[02:48:57] split/recycle: round 12: 166 files, 10624 KiB, 55 pids, /metrics 24.3 ms, mem 1408.0 MiB, errors 25
+[02:49:03] split/recycle: {'requests': 3000, 'errors': 25, 'files': [3, 166], 'kib': [192, 10624], 'worker_pids_seen': 55, 'metrics_ms': [3.9, 24.3], 'memory_mib': [1427.5, 1408.0]}
+[02:49:03] saved results/multiproc/split-recycle.json

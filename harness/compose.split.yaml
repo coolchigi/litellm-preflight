@@ -1,0 +1,73 @@
+# Split stack: the componentized images LiteLLM's Terraform modules deploy.
+# gateway serves inference (/chat/, /metrics, /health), backend serves
+# management (/key/, /team/, /spend/ ...). Both are proxy_server's app with
+# its routes trimmed (see gateway/main.py and backend/main.py upstream).
+# Migrations run once, in their own container, before either starts.
+
+x-litellm-env: &litellm-env
+  DATABASE_URL: postgresql://litellm:litellm@postgres:5432/litellm
+  LITELLM_MASTER_KEY: ${LITELLM_MASTER_KEY:?run ./harness, it generates .env}
+  LITELLM_SALT_KEY: ${LITELLM_SALT_KEY:?run ./harness, it generates .env}
+  CONFIG_FILE_PATH: /config/${LITELLM_CONFIG:-proxy.yaml}
+
+services:
+  migrations:
+    image: ghcr.io/berriai/litellm-migrations:${LITELLM_VERSION:-v1.104.0}
+    environment:
+      DATABASE_URL: postgresql://litellm:litellm@postgres:5432/litellm
+    restart: "no"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  gateway:
+    image: ghcr.io/berriai/litellm-gateway:${LITELLM_VERSION:-v1.104.0}
+    environment:
+      <<: *litellm-env
+      NUM_WORKERS: ${NUM_WORKERS:-1}
+    volumes:
+      - ./config:/config:ro
+    deploy:
+      replicas: ${PROXY_REPLICAS:-1}
+    depends_on: &split-deps
+      migrations:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+      mock:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:4000/health/readiness', timeout=3)"]
+      interval: 3s
+      timeout: 5s
+      retries: 10
+      start_period: 180s
+
+  backend:
+    image: ghcr.io/berriai/litellm-backend:${LITELLM_VERSION:-v1.104.0}
+    environment:
+      <<: *litellm-env
+    volumes:
+      - ./config:/config:ro
+    ports:
+      - "127.0.0.1:${BACKEND_HOST_PORT}:4001"
+    depends_on: *split-deps
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:4001/health/readiness', timeout=3)"]
+      interval: 3s
+      timeout: 5s
+      retries: 10
+      start_period: 180s
+
+  lb:
+    image: nginx:1.27-alpine
+    environment:
+      UPSTREAM_HOST: gateway
+    volumes:
+      - ./lb/default.conf.template:/etc/nginx/templates/default.conf.template:ro
+      - ./lb/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "127.0.0.1:${GATEWAY_HOST_PORT}:80"
+    depends_on:
+      gateway:
+        condition: service_healthy

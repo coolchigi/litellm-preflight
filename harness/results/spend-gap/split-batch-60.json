@@ -1,0 +1,641 @@
+{
+  "finding": "spend-gap",
+  "variant": "batch-60",
+  "settings": {
+    "stack": "split",
+    "replicas": 2,
+    "workers": 1,
+    "config": "batch-write-60.yaml",
+    "files": [],
+    "env": {}
+  },
+  "max_budget": 0.01,
+  "cost_per_call": 0.002,
+  "calls_allowed": 5,
+  "spent_by_allowed_calls": 0.01,
+  "blocked_with": {
+    "status": 422,
+    "error": "budget_exceeded"
+  },
+  "seconds_to_block": 0.69,
+  "db_spend_when_blocked": 0.0,
+  "redis_counter_when_blocked": {
+    "spend:key:7c16e2c387d27c9f5df2793fae7af55f4872fde5c4dafdbc09cd9fde3e2841d4": "0.01"
+  },
+  "seconds_blocked_while_db_under_budget": 118.8,
+  "still_blocked_while_waiting": false,
+  "calls": [
+    {
+      "t": 0.31,
+      "status": 200,
+      "error": null
+    },
+    {
+      "t": 0.61,
+      "status": 200,
+      "error": null
+    },
+    {
+      "t": 0.62,
+      "status": 200,
+      "error": null
+    },
+    {
+      "t": 0.67,
+      "status": 200,
+      "error": null
+    },
+    {
+      "t": 0.68,
+      "status": 200,
+      "error": null
+    },
+    {
+      "t": 0.69,
+      "status": 422,
+      "error": "budget_exceeded"
+    }
+  ],
+  "timeline": [
+    {
+      "t": 0.82,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 1.84,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 2.87,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 3.9,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 4.92,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 5.94,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 7.03,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 8.08,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 9.1,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 10.14,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 11.2,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 12.25,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 13.28,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 14.32,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 15.36,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 16.42,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 17.45,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 18.48,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 19.52,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 20.58,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 21.62,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 22.65,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 23.68,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 24.7,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 25.73,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 26.75,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 27.8,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 28.83,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 29.85,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 30.88,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 31.93,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 32.95,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 33.97,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 35.0,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 36.02,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 37.08,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 38.11,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 39.13,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 40.15,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 41.2,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 42.22,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 43.23,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 44.29,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 45.31,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 46.34,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 47.36,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 48.38,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 49.43,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 50.46,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 51.48,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 52.51,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 53.55,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 54.58,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 55.61,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 56.65,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 57.68,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 58.71,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 59.75,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 60.83,
+      "db_spend": 0.0,
+      "request_status": 200
+    },
+    {
+      "t": 61.9,
+      "db_spend": 0.0,
+      "request_status": 200
+    },
+    {
+      "t": 62.95,
+      "db_spend": 0.0,
+      "request_status": 200
+    },
+    {
+      "t": 63.97,
+      "db_spend": 0.0,
+      "request_status": 200
+    },
+    {
+      "t": 65.01,
+      "db_spend": 0.0,
+      "request_status": 200
+    },
+    {
+      "t": 66.04,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 67.06,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 68.11,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 69.16,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 70.19,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 71.24,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 72.27,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 73.3,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 74.33,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 75.35,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 76.38,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 77.4,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 78.42,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 79.45,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 80.48,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 81.5,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 82.53,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 83.55,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 84.58,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 85.65,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 86.7,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 87.74,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 88.79,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 89.83,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 90.86,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 91.88,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 92.89,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 93.94,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 94.95,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 95.98,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 97.02,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 98.04,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 99.07,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 100.1,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 101.12,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 102.15,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 103.18,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 104.2,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 105.22,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 106.24,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 107.27,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 108.28,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 109.3,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 110.33,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 111.35,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 112.37,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 113.39,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 114.41,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 115.43,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 116.45,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 117.47,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 118.49,
+      "db_spend": 0.008,
+      "request_status": 422
+    },
+    {
+      "t": 119.53,
+      "db_spend": 0.02,
+      "request_status": 422
+    }
+  ]
+}

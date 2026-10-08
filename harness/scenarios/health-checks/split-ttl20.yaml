@@ -1,0 +1,9 @@
+# Shared health check results are reused for DEFAULT_SHARED_HEALTH_CHECK_TTL
+# seconds (300 by default). Match it to health_check_interval.
+services:
+  gateway:
+    environment:
+      DEFAULT_SHARED_HEALTH_CHECK_TTL: "20"
+  backend:
+    environment:
+      DEFAULT_SHARED_HEALTH_CHECK_TTL: "20"

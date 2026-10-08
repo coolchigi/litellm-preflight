@@ -1,0 +1,12 @@
+[02:11:45] classic: up {'stack': 'classic', 'replicas': 3, 'workers': 1, 'config': 'health-checks.yaml', 'files': [], 'env': {}}
+[02:12:35] classic/per-pod: counting health checks for 120s
+[02:14:42] classic/per-pod: 54 health calls, 3.0x one loop, by caller {'litellm-classic-proxy-1': 18, 'litellm-classic-proxy-3': 18, 'litellm-classic-proxy-2': 18}
+[02:14:42] saved results/health-checks/classic-per-pod.json
+[02:14:42] classic: up {'stack': 'classic', 'replicas': 3, 'workers': 1, 'config': 'health-checks-shared.yaml', 'files': [], 'env': {}}
+[02:15:32] classic/shared: counting health checks for 120s
+[02:17:39] classic/shared: 0 health calls, 0.0x one loop, by caller {}
+[02:17:39] saved results/health-checks/classic-shared.json
+[02:17:39] classic: up {'stack': 'classic', 'replicas': 1, 'workers': 2, 'config': 'health-checks.yaml', 'files': [], 'env': {}}
+[02:18:18] classic/per-worker: counting health checks for 120s
+[02:20:24] classic/per-worker: 36 health calls, 2.0x one loop, by caller {'litellm-classic-proxy-1': 36}
+[02:20:24] saved results/health-checks/classic-per-worker.json

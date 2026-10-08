@@ -1,0 +1,283 @@
+{
+  "finding": "auth-cache",
+  "variant": "in-memory",
+  "litellm_version": "v1.104.0",
+  "settings": {
+    "stack": "split",
+    "replicas": 2,
+    "workers": 1,
+    "config": "proxy.yaml",
+    "files": [],
+    "env": {}
+  },
+  "delete_status": 200,
+  "redis_entries_before_delete": {
+    "{model_per_key:06ca5db15a479594ef15bd00fbbb830600d24b23fec560739f502e6d98700705:mock-a}:tokens": "60",
+    "spend:key:06ca5db15a479594ef15bd00fbbb830600d24b23fec560739f502e6d98700705": "60",
+    "{api_key:06ca5db15a479594ef15bd00fbbb830600d24b23fec560739f502e6d98700705}:tokens": "60"
+  },
+  "redis_entries_after_delete": {
+    "{model_per_key:06ca5db15a479594ef15bd00fbbb830600d24b23fec560739f502e6d98700705:mock-a}:tokens": "59",
+    "spend:key:06ca5db15a479594ef15bd00fbbb830600d24b23fec560739f502e6d98700705": "60",
+    "{api_key:06ca5db15a479594ef15bd00fbbb830600d24b23fec560739f502e6d98700705}:tokens": "59"
+  },
+  "redis_entries_at_end": {},
+  "last_success_seconds_after_delete": 55.8,
+  "successes_after_delete": 24,
+  "probes": [
+    {
+      "t": 0.2,
+      "statuses": [
+        200,
+        200
+      ]
+    },
+    {
+      "t": 5.2,
+      "statuses": [
+        200,
+        200
+      ]
+    },
+    {
+      "t": 10.2,
+      "statuses": [
+        200,
+        200
+      ]
+    },
+    {
+      "t": 15.3,
+      "statuses": [
+        200,
+        200
+      ]
+    },
+    {
+      "t": 20.3,
+      "statuses": [
+        200,
+        200
+      ]
+    },
+    {
+      "t": 25.4,
+      "statuses": [
+        200,
+        200
+      ]
+    },
+    {
+      "t": 30.5,
+      "statuses": [
+        200,
+        200
+      ]
+    },
+    {
+      "t": 35.5,
+      "statuses": [
+        200,
+        200
+      ]
+    },
+    {
+      "t": 40.7,
+      "statuses": [
+        200,
+        200
+      ]
+    },
+    {
+      "t": 45.7,
+      "statuses": [
+        200,
+        200
+      ]
+    },
+    {
+      "t": 50.7,
+      "statuses": [
+        200,
+        200
+      ]
+    },
+    {
+      "t": 55.8,
+      "statuses": [
+        200,
+        200
+      ]
+    },
+    {
+      "t": 60.8,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 65.9,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 70.9,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 76.0,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 81.0,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 86.1,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 91.1,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 96.1,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 101.2,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 106.2,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 111.3,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 116.4,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 121.4,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 126.4,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 131.5,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 136.5,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 141.6,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 146.6,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 151.7,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 156.7,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 161.8,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 166.9,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 171.9,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 177.0,
+      "statuses": [
+        401,
+        401
+      ]
+    }
+  ],
+  "first_rejected_everywhere_seconds": 60.8,
+  "success_after_rejected_everywhere_seconds": []
+}

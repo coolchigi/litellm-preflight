@@ -1,0 +1,186 @@
+{
+  "finding": "spend-gap",
+  "variant": "default",
+  "settings": {
+    "stack": "classic",
+    "replicas": 2,
+    "workers": 1,
+    "config": "proxy.yaml",
+    "files": [],
+    "env": {}
+  },
+  "max_budget": 0.01,
+  "cost_per_call": 0.002,
+  "calls_allowed": 5,
+  "spent_by_allowed_calls": 0.01,
+  "blocked_with": {
+    "status": 422,
+    "error": "budget_exceeded"
+  },
+  "seconds_to_block": 0.86,
+  "db_spend_when_blocked": 0.0,
+  "redis_counter_when_blocked": {
+    "spend:key:86d6b95c51d1054391a1f6455fc1098f28e1432910fafe7ab728611e0b449c5e": "0.01"
+  },
+  "seconds_blocked_while_db_under_budget": 24.9,
+  "still_blocked_while_waiting": true,
+  "calls": [
+    {
+      "t": 0.4,
+      "status": 200,
+      "error": null
+    },
+    {
+      "t": 0.78,
+      "status": 200,
+      "error": null
+    },
+    {
+      "t": 0.79,
+      "status": 200,
+      "error": null
+    },
+    {
+      "t": 0.84,
+      "status": 200,
+      "error": null
+    },
+    {
+      "t": 0.85,
+      "status": 200,
+      "error": null
+    },
+    {
+      "t": 0.86,
+      "status": 422,
+      "error": "budget_exceeded"
+    }
+  ],
+  "timeline": [
+    {
+      "t": 1.0,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 2.02,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 3.05,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 4.08,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 5.11,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 6.15,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 7.17,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 8.22,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 9.26,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 10.31,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 11.35,
+      "db_spend": 0.0,
+      "request_status": 422
+    },
+    {
+      "t": 12.41,
+      "db_spend": 0.004,
+      "request_status": 422
+    },
+    {
+      "t": 13.43,
+      "db_spend": 0.004,
+      "request_status": 422
+    },
+    {
+      "t": 14.46,
+      "db_spend": 0.004,
+      "request_status": 422
+    },
+    {
+      "t": 15.48,
+      "db_spend": 0.004,
+      "request_status": 422
+    },
+    {
+      "t": 16.5,
+      "db_spend": 0.004,
+      "request_status": 422
+    },
+    {
+      "t": 17.52,
+      "db_spend": 0.004,
+      "request_status": 422
+    },
+    {
+      "t": 18.54,
+      "db_spend": 0.004,
+      "request_status": 422
+    },
+    {
+      "t": 19.57,
+      "db_spend": 0.004,
+      "request_status": 422
+    },
+    {
+      "t": 20.61,
+      "db_spend": 0.004,
+      "request_status": 422
+    },
+    {
+      "t": 21.63,
+      "db_spend": 0.004,
+      "request_status": 422
+    },
+    {
+      "t": 22.66,
+      "db_spend": 0.004,
+      "request_status": 422
+    },
+    {
+      "t": 23.68,
+      "db_spend": 0.004,
+      "request_status": 422
+    },
+    {
+      "t": 24.76,
+      "db_spend": 0.004,
+      "request_status": 422
+    },
+    {
+      "t": 25.8,
+      "db_spend": 0.01,
+      "request_status": 422
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+# Same as split-control, plus uvicorn worker recycling every 50 requests.
+services:
+  gateway:
+    environment:
+      PROMETHEUS_MULTIPROC_DIR: /tmp/litellm_prometheus_multiproc
+    command: ["--host", "0.0.0.0", "--port", "4000", "--limit-max-requests", "50"]

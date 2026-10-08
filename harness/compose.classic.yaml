@@ -1,0 +1,45 @@
+# Classic stack: the single litellm proxy image, which serves inference and
+# management on one port and runs its own DB migrations at startup.
+
+x-litellm-env: &litellm-env
+  DATABASE_URL: postgresql://litellm:litellm@postgres:5432/litellm
+  LITELLM_MASTER_KEY: ${LITELLM_MASTER_KEY:?run ./harness, it generates .env}
+  LITELLM_SALT_KEY: ${LITELLM_SALT_KEY:?run ./harness, it generates .env}
+
+services:
+  proxy:
+    image: ghcr.io/berriai/litellm:${LITELLM_VERSION:-v1.104.0}
+    command: ["--config", "/config/${LITELLM_CONFIG:-proxy.yaml}", "--port", "4000"]
+    environment:
+      <<: *litellm-env
+      NUM_WORKERS: ${NUM_WORKERS:-1}
+    volumes:
+      - ./config:/config:ro
+    deploy:
+      replicas: ${PROXY_REPLICAS:-1}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      mock:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:4000/health/readiness', timeout=3)"]
+      interval: 3s
+      timeout: 5s
+      retries: 10
+      start_period: 180s
+
+  lb:
+    image: nginx:1.27-alpine
+    environment:
+      UPSTREAM_HOST: proxy
+    volumes:
+      - ./lb/default.conf.template:/etc/nginx/templates/default.conf.template:ro
+      - ./lb/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "127.0.0.1:${PROXY_HOST_PORT}:80"
+    depends_on:
+      proxy:
+        condition: service_healthy

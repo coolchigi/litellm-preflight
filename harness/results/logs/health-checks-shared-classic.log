@@ -1,0 +1,8 @@
+[02:22:45] classic: up {'stack': 'classic', 'replicas': 3, 'workers': 1, 'config': 'health-checks-shared.yaml', 'files': [], 'env': {}}
+[02:23:14] classic/shared: counting health checks for 660s
+[02:34:21] classic/shared: 9 health calls, 0.09x one loop, by caller {'litellm-classic-proxy-3': 9}
+[02:34:21] saved results/health-checks/classic-shared.json
+[02:34:21] classic: up {'stack': 'classic', 'replicas': 3, 'workers': 1, 'config': 'health-checks-shared.yaml', 'files': ['scenarios/health-checks/classic-ttl20.yaml'], 'env': {}}
+[02:35:10] classic/shared-ttl20: counting health checks for 120s
+[02:37:17] classic/shared-ttl20: 18 health calls, 1.0x one loop, by caller {'litellm-classic-proxy-2': 18}
+[02:37:17] saved results/health-checks/classic-shared-ttl20.json

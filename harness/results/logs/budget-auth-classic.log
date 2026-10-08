@@ -1,0 +1,28 @@
+[02:51:23] classic: up {'stack': 'classic', 'replicas': 2, 'workers': 1, 'config': 'proxy.yaml', 'files': [], 'env': {}}
+[02:51:53] classic/default: blocked after 5 calls ($0.010) with 422 budget_exceeded. /key/info spend $0.0, Redis {'spend:key:86d6b95c51d1054391a1f6455fc1098f28e1432910fafe7ab728611e0b449c5e': '0.01'}
+[02:52:25] classic/default: /key/info caught up 24.9s after the key was blocked
+[02:52:25] saved results/spend-gap/classic-default.json
+[02:52:25] classic: up {'stack': 'classic', 'replicas': 2, 'workers': 1, 'config': 'batch-write-60.yaml', 'files': [], 'env': {}}
+[02:52:56] classic/batch-60: blocked after 5 calls ($0.010) with 422 budget_exceeded. /key/info spend $0.0, Redis {'spend:key:1ac351572422dfe031dc46281e9faf4f384735a0aa86bae1904918fcfee7ebec': '0.01'}
+[02:54:24] classic/batch-60: /key/info caught up 81.5s after the key was blocked
+[02:54:24] saved results/spend-gap/classic-batch-60.json
+[02:54:24] classic: up {'stack': 'classic', 'replicas': 2, 'workers': 1, 'config': 'redis-auth-cache.yaml', 'files': [], 'env': {}}
+[02:54:54] classic/redis: warm-up [200, 200, 200, 200, 200, 200], delete HTTP 200. Redis entries (name: TTL) before {'spend:key:e12a664805adf179cf0306ed495cf75d92d6c640bdbec0dcfb63e06c648de3d3': '60', '{api_key:e12a664805adf179cf0306ed495cf75d92d6c640bdbec0dcfb63e06c648de3d3}:tokens': '59', 'e12a664805adf179cf0306ed495cf75d92d6c640bdbec0dcfb63e06c648de3d3': '59', '{model_per_key:e12a664805adf179cf0306ed495cf75d92d6c640bdbec0dcfb63e06c648de3d3:mock-a}:tokens': '59'}, after {'spend:key:e12a664805adf179cf0306ed495cf75d92d6c640bdbec0dcfb63e06c648de3d3': '60', '{api_key:e12a664805adf179cf0306ed495cf75d92d6c640bdbec0dcfb63e06c648de3d3}:tokens': '59', '{model_per_key:e12a664805adf179cf0306ed495cf75d92d6c640bdbec0dcfb63e06c648de3d3:mock-a}:tokens': '59'}
+[02:58:03] classic/redis: 12 requests got through after delete, last at 56.2s, resurrected at [5.2, 10.2, 15.3, 20.4, 25.5, 30.6, 35.7, 40.8, 46.0, 51.2, 56.2]
+[02:58:03] saved results/auth-cache/classic-redis.json
+[02:58:03] classic: up {'stack': 'classic', 'replicas': 2, 'workers': 1, 'config': 'proxy.yaml', 'files': [], 'env': {}}
+[02:58:34] classic/in-memory: warm-up [200, 200, 200, 200, 200, 200], delete HTTP 200. Redis entries (name: TTL) before {'spend:key:c3339dea79404e708c0d7f4e3a647e05ec6b604e4732ced409955c3e42e53499': '60', '{api_key:c3339dea79404e708c0d7f4e3a647e05ec6b604e4732ced409955c3e42e53499}:tokens': '59', '{model_per_key:c3339dea79404e708c0d7f4e3a647e05ec6b604e4732ced409955c3e42e53499:mock-a}:tokens': '59'}, after {'spend:key:c3339dea79404e708c0d7f4e3a647e05ec6b604e4732ced409955c3e42e53499': '60', '{api_key:c3339dea79404e708c0d7f4e3a647e05ec6b604e4732ced409955c3e42e53499}:tokens': '59', '{model_per_key:c3339dea79404e708c0d7f4e3a647e05ec6b604e4732ced409955c3e42e53499:mock-a}:tokens': '59'}
+[03:01:42] classic/in-memory: 12 requests got through after delete, last at 55.9s, resurrected at [5.2, 10.2, 15.3, 20.4, 25.5, 30.6, 35.6, 40.8, 45.9, 50.9, 55.9]
+[03:01:42] saved results/auth-cache/classic-in-memory.json
+[03:01:42] classic: up {'stack': 'classic', 'replicas': 2, 'workers': 1, 'config': 'proxy.yaml', 'files': [], 'env': {}}
+[03:02:12] classic:   2m created 07:02:12 -> resets 2026-10-06 07:04:00+00:00
+[03:02:12] classic:   5m created 07:02:12 -> resets 2026-10-06 07:05:00+00:00
+[03:02:12] classic:   1h created 07:02:12 -> resets 2026-10-06 08:00:00+00:00
+[03:02:12] classic:   1d created 07:02:12 -> resets 2026-10-07 00:00:00+00:00
+[03:02:12] classic:   7d created 07:02:12 -> resets 2026-10-12 00:00:00+00:00
+[03:02:12] classic:  30d created 07:02:12 -> resets 2026-11-01 00:00:00+00:00
+[03:02:12] classic:  1mo created 07:02:12 -> resets 2026-11-01 00:00:00+00:00
+[03:02:13] classic: key blocked at 07:02:13 after 2 calls, budget_reset_at 07:04:00
+[03:14:16] classic: first request through 616s after budget_reset_at
+[03:14:16] classic: /key/info spend reset 616s after budget_reset_at
+[03:14:27] saved results/budget-reset/classic.json

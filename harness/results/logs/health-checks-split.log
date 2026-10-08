@@ -1,0 +1,12 @@
+[02:12:35] split: up {'stack': 'split', 'replicas': 3, 'workers': 1, 'config': 'health-checks.yaml', 'files': [], 'env': {}}
+[02:13:23] split/per-pod: counting health checks for 120s
+[02:15:30] split/per-pod: 72 health calls, 4.0x one loop, by caller {'litellm-split-gateway-2': 18, 'litellm-split-gateway-1': 18, 'litellm-split-gateway-3': 18, 'litellm-split-backend-1': 18}
+[02:15:30] saved results/health-checks/split-per-pod.json
+[02:15:30] split: up {'stack': 'split', 'replicas': 3, 'workers': 1, 'config': 'health-checks-shared.yaml', 'files': [], 'env': {}}
+[02:16:16] split/shared: counting health checks for 120s
+[02:18:23] split/shared: 0 health calls, 0.0x one loop, by caller {}
+[02:18:23] saved results/health-checks/split-shared.json
+[02:18:23] split: up {'stack': 'split', 'replicas': 1, 'workers': 2, 'config': 'health-checks.yaml', 'files': [], 'env': {}}
+[02:19:09] split/per-worker: counting health checks for 120s
+[02:21:15] split/per-worker: 54 health calls, 3.0x one loop, by caller {'litellm-split-backend-1': 18, 'litellm-split-gateway-1': 36}
+[02:21:15] saved results/health-checks/split-per-worker.json

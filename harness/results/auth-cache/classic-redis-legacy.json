@@ -1,0 +1,284 @@
+{
+  "finding": "auth-cache",
+  "variant": "redis-legacy",
+  "litellm_version": "v1.104.0",
+  "settings": {
+    "stack": "classic",
+    "replicas": 2,
+    "workers": 1,
+    "config": "redis-auth-cache-legacy.yaml",
+    "files": [],
+    "env": {}
+  },
+  "delete_status": 200,
+  "redis_entries_before_delete": {
+    "{api_key:3571ad33b5258a9a97394f68a7e95471ce7f22624048fea2aea9c0a92a968841}:tokens": "60",
+    "spend:key:3571ad33b5258a9a97394f68a7e95471ce7f22624048fea2aea9c0a92a968841": "60",
+    "{model_per_key:3571ad33b5258a9a97394f68a7e95471ce7f22624048fea2aea9c0a92a968841:mock-a}:tokens": "60",
+    "3571ad33b5258a9a97394f68a7e95471ce7f22624048fea2aea9c0a92a968841": "59"
+  },
+  "redis_entries_after_delete": {
+    "{api_key:3571ad33b5258a9a97394f68a7e95471ce7f22624048fea2aea9c0a92a968841}:tokens": "60",
+    "spend:key:3571ad33b5258a9a97394f68a7e95471ce7f22624048fea2aea9c0a92a968841": "60",
+    "{model_per_key:3571ad33b5258a9a97394f68a7e95471ce7f22624048fea2aea9c0a92a968841:mock-a}:tokens": "60"
+  },
+  "redis_entries_at_end": {},
+  "last_success_seconds_after_delete": 55.6,
+  "successes_after_delete": 12,
+  "first_rejected_everywhere_seconds": 60.7,
+  "success_after_rejected_everywhere_seconds": [],
+  "probes": [
+    {
+      "t": 0.2,
+      "statuses": [
+        200,
+        401
+      ]
+    },
+    {
+      "t": 5.2,
+      "statuses": [
+        200,
+        401
+      ]
+    },
+    {
+      "t": 10.2,
+      "statuses": [
+        200,
+        401
+      ]
+    },
+    {
+      "t": 15.3,
+      "statuses": [
+        200,
+        401
+      ]
+    },
+    {
+      "t": 20.3,
+      "statuses": [
+        200,
+        401
+      ]
+    },
+    {
+      "t": 25.4,
+      "statuses": [
+        200,
+        401
+      ]
+    },
+    {
+      "t": 30.4,
+      "statuses": [
+        200,
+        401
+      ]
+    },
+    {
+      "t": 35.5,
+      "statuses": [
+        200,
+        401
+      ]
+    },
+    {
+      "t": 40.5,
+      "statuses": [
+        200,
+        401
+      ]
+    },
+    {
+      "t": 45.5,
+      "statuses": [
+        200,
+        401
+      ]
+    },
+    {
+      "t": 50.6,
+      "statuses": [
+        200,
+        401
+      ]
+    },
+    {
+      "t": 55.6,
+      "statuses": [
+        200,
+        401
+      ]
+    },
+    {
+      "t": 60.7,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 65.7,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 70.8,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 75.8,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 80.8,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 85.9,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 90.9,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 96.0,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 101.0,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 106.1,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 111.1,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 116.2,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 121.2,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 126.3,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 131.3,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 136.4,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 141.4,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 146.5,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 151.5,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 156.6,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 161.6,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 166.6,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 171.7,
+      "statuses": [
+        401,
+        401
+      ]
+    },
+    {
+      "t": 176.7,
+      "statuses": [
+        401,
+        401
+      ]
+    }
+  ]
+}

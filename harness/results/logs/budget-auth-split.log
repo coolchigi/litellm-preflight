@@ -1,0 +1,28 @@
+[02:52:03] split: up {'stack': 'split', 'replicas': 2, 'workers': 1, 'config': 'proxy.yaml', 'files': [], 'env': {}}
+[02:52:29] split/default: blocked after 5 calls ($0.010) with 422 budget_exceeded. /key/info spend $0.0, Redis {'spend:key:85c45b329bd83025065252845b1d96b0faa51215af64c6eb1ab4065af0fa85c3': '0.01'}
+[02:52:49] split/default: /key/info caught up 12.6s after the key was blocked
+[02:52:49] saved results/spend-gap/split-default.json
+[02:52:49] split: up {'stack': 'split', 'replicas': 2, 'workers': 1, 'config': 'batch-write-60.yaml', 'files': [], 'env': {}}
+[02:53:11] split/batch-60: blocked after 5 calls ($0.010) with 422 budget_exceeded. /key/info spend $0.0, Redis {'spend:key:7c16e2c387d27c9f5df2793fae7af55f4872fde5c4dafdbc09cd9fde3e2841d4': '0.01'}
+[02:55:16] split/batch-60: /key/info caught up 118.8s after the key was blocked
+[02:55:16] saved results/spend-gap/split-batch-60.json
+[02:55:16] split: up {'stack': 'split', 'replicas': 2, 'workers': 1, 'config': 'redis-auth-cache.yaml', 'files': [], 'env': {}}
+[02:55:43] split/redis: warm-up [200, 200, 200, 200, 200, 200], delete HTTP 200. Redis entries (name: TTL) before {'spend:key:1c03ccc52fcd1bb9aad0a0f37413c7aae142fc49c85ac1b2b2e9ae0cb0d348e6': '60', '1c03ccc52fcd1bb9aad0a0f37413c7aae142fc49c85ac1b2b2e9ae0cb0d348e6': '59', '{api_key:1c03ccc52fcd1bb9aad0a0f37413c7aae142fc49c85ac1b2b2e9ae0cb0d348e6}:tokens': '59', '{model_per_key:1c03ccc52fcd1bb9aad0a0f37413c7aae142fc49c85ac1b2b2e9ae0cb0d348e6:mock-a}:tokens': '59'}, after {'spend:key:1c03ccc52fcd1bb9aad0a0f37413c7aae142fc49c85ac1b2b2e9ae0cb0d348e6': '60', '{api_key:1c03ccc52fcd1bb9aad0a0f37413c7aae142fc49c85ac1b2b2e9ae0cb0d348e6}:tokens': '59', '{model_per_key:1c03ccc52fcd1bb9aad0a0f37413c7aae142fc49c85ac1b2b2e9ae0cb0d348e6:mock-a}:tokens': '59'}
+[02:58:51] split/redis: 24 requests got through after delete, last at 55.6s, resurrected at []
+[02:58:51] saved results/auth-cache/split-redis.json
+[02:58:51] split: up {'stack': 'split', 'replicas': 2, 'workers': 1, 'config': 'proxy.yaml', 'files': [], 'env': {}}
+[02:59:13] split/in-memory: warm-up [200, 200, 200, 200, 200, 200], delete HTTP 200. Redis entries (name: TTL) before {'{model_per_key:06ca5db15a479594ef15bd00fbbb830600d24b23fec560739f502e6d98700705:mock-a}:tokens': '60', 'spend:key:06ca5db15a479594ef15bd00fbbb830600d24b23fec560739f502e6d98700705': '60', '{api_key:06ca5db15a479594ef15bd00fbbb830600d24b23fec560739f502e6d98700705}:tokens': '60'}, after {'{model_per_key:06ca5db15a479594ef15bd00fbbb830600d24b23fec560739f502e6d98700705:mock-a}:tokens': '59', 'spend:key:06ca5db15a479594ef15bd00fbbb830600d24b23fec560739f502e6d98700705': '60', '{api_key:06ca5db15a479594ef15bd00fbbb830600d24b23fec560739f502e6d98700705}:tokens': '59'}
+[03:02:22] split/in-memory: 24 requests got through after delete, last at 55.8s, resurrected at []
+[03:02:22] saved results/auth-cache/split-in-memory.json
+[03:02:22] split: up {'stack': 'split', 'replicas': 2, 'workers': 1, 'config': 'proxy.yaml', 'files': [], 'env': {}}
+[03:02:43] split:   2m created 07:02:42 -> resets 2026-10-06 07:04:00+00:00
+[03:02:43] split:   5m created 07:02:43 -> resets 2026-10-06 07:05:00+00:00
+[03:02:43] split:   1h created 07:02:43 -> resets 2026-10-06 08:00:00+00:00
+[03:02:43] split:   1d created 07:02:43 -> resets 2026-10-07 00:00:00+00:00
+[03:02:43] split:   7d created 07:02:43 -> resets 2026-10-12 00:00:00+00:00
+[03:02:43] split:  30d created 07:02:43 -> resets 2026-11-01 00:00:00+00:00
+[03:02:43] split:  1mo created 07:02:43 -> resets 2026-11-01 00:00:00+00:00
+[03:02:43] split: key blocked at 07:02:43 after 2 calls, budget_reset_at 07:04:00
+[03:12:45] split: first request through 525s after budget_reset_at
+[03:12:45] split: /key/info spend reset 525s after budget_reset_at
+[03:12:56] saved results/budget-reset/split.json

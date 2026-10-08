@@ -1,0 +1,32 @@
+[02:38:36] classic: up {'stack': 'classic', 'replicas': 1, 'workers': 2, 'config': 'proxy.yaml', 'files': [], 'env': {}}
+[02:39:00] classic/control: multiproc dir at start {'exists': True, 'files': 3, 'bytes': 196608, 'pids': 2, 'by_kind': {'gauge_livesum': 1, 'gauge_all': 2}}
+[02:39:11] classic/control: round 1: 8 files, 512 KiB, 2 pids, /metrics 10.8 ms, mem 1601.5 MiB, errors 0
+[02:39:19] classic/control: round 2: 8 files, 512 KiB, 2 pids, /metrics 14.9 ms, mem 1602.6 MiB, errors 0
+[02:39:27] classic/control: round 3: 8 files, 512 KiB, 2 pids, /metrics 13.6 ms, mem 1626.1 MiB, errors 0
+[02:39:35] classic/control: round 4: 8 files, 512 KiB, 2 pids, /metrics 8.1 ms, mem 1637.4 MiB, errors 0
+[02:39:43] classic/control: round 5: 8 files, 512 KiB, 2 pids, /metrics 16.1 ms, mem 1639.4 MiB, errors 0
+[02:39:51] classic/control: round 6: 8 files, 512 KiB, 2 pids, /metrics 7.1 ms, mem 1641.5 MiB, errors 0
+[02:39:58] classic/control: round 7: 8 files, 512 KiB, 2 pids, /metrics 8.5 ms, mem 1644.5 MiB, errors 0
+[02:40:06] classic/control: round 8: 8 files, 512 KiB, 2 pids, /metrics 9.7 ms, mem 1646.6 MiB, errors 0
+[02:40:14] classic/control: round 9: 8 files, 512 KiB, 2 pids, /metrics 11.4 ms, mem 1646.6 MiB, errors 0
+[02:40:21] classic/control: round 10: 8 files, 512 KiB, 2 pids, /metrics 6.8 ms, mem 1647.6 MiB, errors 0
+[02:40:29] classic/control: round 11: 8 files, 512 KiB, 2 pids, /metrics 10.7 ms, mem 1652.7 MiB, errors 0
+[02:40:37] classic/control: round 12: 8 files, 512 KiB, 2 pids, /metrics 7.5 ms, mem 1656.8 MiB, errors 0
+[02:40:43] classic/control: {'requests': 3000, 'errors': 0, 'files': [3, 8], 'kib': [192, 512], 'worker_pids_seen': 2, 'metrics_ms': [4.2, 7.5], 'memory_mib': [1541.1, 1656.8]}
+[02:40:43] saved results/multiproc/classic-control.json
+[02:40:43] classic: up {'stack': 'classic', 'replicas': 1, 'workers': 2, 'config': 'proxy.yaml', 'files': ['scenarios/multiproc/classic-recycle.yaml'], 'env': {}}
+[02:41:07] classic/recycle: multiproc dir at start {'exists': True, 'files': 3, 'bytes': 196608, 'pids': 2, 'by_kind': {'gauge_livesum': 1, 'gauge_all': 2}}
+[02:41:43] classic/recycle: round 1: 20 files, 1280 KiB, 6 pids, /metrics 9.0 ms, mem 1561.6 MiB, errors 0
+[02:42:13] classic/recycle: round 2: 32 files, 2048 KiB, 10 pids, /metrics 13.3 ms, mem 1573.9 MiB, errors 3
+[02:42:53] classic/recycle: round 3: 42 files, 2688 KiB, 14 pids, /metrics 14.4 ms, mem 1535.0 MiB, errors 3
+[02:43:24] classic/recycle: round 4: 62 files, 3968 KiB, 20 pids, /metrics 16.3 ms, mem 1567.7 MiB, errors 4
+[02:43:56] classic/recycle: round 5: 74 files, 4736 KiB, 24 pids, /metrics 11.8 ms, mem 1577.0 MiB, errors 5
+[02:44:38] classic/recycle: round 6: 92 files, 5888 KiB, 30 pids, /metrics 14.3 ms, mem 1565.7 MiB, errors 7
+[02:45:09] classic/recycle: round 7: 104 files, 6656 KiB, 34 pids, /metrics 22.4 ms, mem 1568.8 MiB, errors 7
+[02:45:41] classic/recycle: round 8: 116 files, 7424 KiB, 38 pids, /metrics 25.6 ms, mem 1582.1 MiB, errors 9
+[02:46:22] classic/recycle: round 9: 126 files, 8064 KiB, 42 pids, /metrics 23.9 ms, mem 1543.2 MiB, errors 11
+[02:46:52] classic/recycle: round 10: 143 files, 9152 KiB, 48 pids, /metrics 34.8 ms, mem 1565.7 MiB, errors 12
+[02:47:21] classic/recycle: round 11: 157 files, 10048 KiB, 52 pids, /metrics 36.5 ms, mem 1051.6 MiB, errors 12
+[02:47:51] classic/recycle: round 12: 169 files, 10816 KiB, 56 pids, /metrics 36.7 ms, mem 1457.2 MiB, errors 13
+[02:47:58] classic/recycle: {'requests': 3000, 'errors': 13, 'files': [3, 169], 'kib': [192, 10816], 'worker_pids_seen': 56, 'metrics_ms': [5.3, 36.7], 'memory_mib': [1546.2, 1457.2]}
+[02:47:58] saved results/multiproc/classic-recycle.json

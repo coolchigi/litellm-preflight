@@ -1,0 +1,6 @@
+# 2 workers (set by the scenario) with prometheus as a callback make the CLI
+# auto-create PROMETHEUS_MULTIPROC_DIR. This adds worker recycling on top.
+services:
+  proxy:
+    environment:
+      MAX_REQUESTS_BEFORE_RESTART: "50"

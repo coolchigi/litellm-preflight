@@ -1,0 +1,6 @@
+# The gateway image doesn't auto-create a multiproc dir. LiteLLM's Terraform
+# module sets this when the metrics sidecar is on, so mirror that.
+services:
+  gateway:
+    environment:
+      PROMETHEUS_MULTIPROC_DIR: /tmp/litellm_prometheus_multiproc

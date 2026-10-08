@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+# Repro harness for LiteLLM. Runs one of two stacks against a fake model server:
+#
+#   classic  the single litellm proxy image
+#   split    the gateway / backend / migrations images
+#
+# Usage:
+#   ./harness up <stack> [-f extra-compose.yaml ...]   start (waits for healthy)
+#   ./harness smoke <stack>                            check the stack works end to end
+#   ./harness stats <stack>                            mock call counts
+#   ./harness events <stack> [limit]                   most recent mock calls
+#   ./harness reset <stack>                            zero the mock counts
+#   ./harness logs <stack> [service]                   follow logs
+#   ./harness ps <stack>
+#   ./harness urls <stack>
+#   ./harness down <stack>                             stop and delete volumes
+#   ./harness compose <stack> <args...>                raw docker compose
+#
+# Knobs (env vars): LITELLM_VERSION, PROXY_REPLICAS, NUM_WORKERS, LITELLM_CONFIG,
+# MOCK_PROMPT_TOKENS, MOCK_COMPLETION_TOKENS, MOCK_LATENCY_MS.
+set -euo pipefail
+
+cd "$(dirname "$0")"
+
+die() { echo "harness: $*" >&2; exit 1; }
+
+ensure_env() {
+  [ -f .env ] && return
+  command -v openssl >/dev/null || die "openssl is needed to generate keys"
+  # LiteLLM v1.104.0+ refuses to start with a publicly known master key, so mint one.
+  # Keep this file: a new salt key makes encrypted values already in the DB unreadable.
+  {
+    echo "LITELLM_MASTER_KEY=sk-$(openssl rand -hex 32)"
+    echo "LITELLM_SALT_KEY=sk-$(openssl rand -hex 32)"
+  } > .env
+  chmod 600 .env
+  echo "harness: wrote .env with fresh master and salt keys"
+}
+
+set_stack() {
+  STACK="${1:-}"
+  case "$STACK" in
+    classic)
+      export PROXY_HOST_PORT=4000 MOCK_HOST_PORT=9000
+      INFERENCE_URL="http://127.0.0.1:4000"
+      ADMIN_URL="http://127.0.0.1:4000"
+      MOCK_URL="http://127.0.0.1:9000"
+      ;;
+    split)
+      export GATEWAY_HOST_PORT=4100 BACKEND_HOST_PORT=4101 MOCK_HOST_PORT=9100
+      INFERENCE_URL="http://127.0.0.1:4100"
+      ADMIN_URL="http://127.0.0.1:4101"
+      MOCK_URL="http://127.0.0.1:9100"
+      ;;
+    *) die "stack must be 'classic' or 'split', got '${STACK}'" ;;
+  esac
+  export LITELLM_VERSION="${LITELLM_VERSION:-v1.104.0}"
+  PROJECT="litellm-${STACK}"
+}
+
+compose() {
+  docker compose -p "$PROJECT" -f compose.base.yaml -f "compose.${STACK}.yaml" "${EXTRA_FILES[@]+"${EXTRA_FILES[@]}"}" "$@"
+}
+
+parse_extra_files() {
+  EXTRA_FILES=()
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      -f) [ $# -ge 2 ] || die "-f needs a file"; EXTRA_FILES+=(-f "$2"); shift 2 ;;
+      *) die "unknown argument: $1" ;;
+    esac
+  done
+}
+
+cmd="${1:-}"; [ -n "$cmd" ] || { sed -n '2,25p' "$0"; exit 1; }
+shift
+set_stack "${1:-}"; shift
+EXTRA_FILES=()
+ensure_env
+
+case "$cmd" in
+  up)
+    parse_extra_files "$@"
+    echo "harness: starting ${STACK} (LiteLLM ${LITELLM_VERSION}, replicas=${PROXY_REPLICAS:-1}, workers=${NUM_WORKERS:-1})"
+    compose up -d --wait --wait-timeout 420
+    "$0" urls "$STACK"
+    ;;
+  down)   compose down -v --remove-orphans ;;
+  ps)     compose ps ;;
+  logs)   compose logs -f --tail 200 "$@" ;;
+  compose) compose "$@" ;;
+  urls)
+    echo "inference  ${INFERENCE_URL}"
+    echo "admin      ${ADMIN_URL}"
+    echo "mock       ${MOCK_URL}/stats"
+    ;;
+  smoke)
+    python3 smoke.py --stack "$STACK" --inference "$INFERENCE_URL" --admin "$ADMIN_URL" \
+      --mock "$MOCK_URL" --replicas "${PROXY_REPLICAS:-1}"
+    ;;
+  stats)  curl -fsS "${MOCK_URL}/stats" | python3 -m json.tool ;;
+  events) curl -fsS "${MOCK_URL}/events?limit=${1:-50}" | python3 -m json.tool ;;
+  reset)  curl -fsS -X POST "${MOCK_URL}/stats/reset"; echo ;;
+  *) die "unknown command: ${cmd}" ;;
+esac
